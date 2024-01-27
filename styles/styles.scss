@@ -1,0 +1,13 @@
+.form {
+
+    &__btn {
+
+        &--answer {
+            // background-color: rgb(84, 84, 221);
+            
+            &.selected {
+                background-color: green;
+            }
+        }
+    }
+}
