@@ -1,0 +1,113 @@
+header {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
+  height: 100%;
+}
+
+.headerLeftBox {
+  position: relative;
+  background: #8D0B15;
+  background: linear-gradient(to right, #999, #333);
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.headerLeftBox:after {
+  content: "";
+  position: absolute;
+  height: 9px;
+  width: 9px;
+  bottom: 0;
+  right: 0;
+  border-top-left-radius: 10px;
+  background-color: #aaa;
+  z-index: 3;
+}
+
+.headerCenterBox {
+  background: linear-gradient(to bottom, #999, #333);
+  border-bottom: 12px solid #aaa;
+}
+
+.headerRightBox {
+  position: relative;
+  background: #8D0B15;
+  background: linear-gradient(to left, #999, #333);
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.headerRightBox:after {
+  content: "";
+  position: absolute;
+  height: 9px;
+  width: 9px;
+  bottom: 0;
+  left: 0;
+  border-top-right-radius: 10px;
+  background-color: #aaa;
+  z-index: 3;
+}
+
+.layoutContainer {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
+  height: 100%;
+}
+
+.leftBox {
+  background: linear-gradient(to right, #999, #333);
+  border-right: 12px solid #aaa;
+}
+
+.rightBox {
+  background: linear-gradient(to left, #999, #333);
+  border-left: 12px solid #aaa;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
+  height: 100%;
+}
+
+.footerLeftBox {
+  position: relative;
+  background: #8D0B15;
+  background: linear-gradient(to right, #999, #333);
+  border-right: 2px solid black;
+  border-top: 2px solid black;
+}
+.footerLeftBox:after {
+  content: "";
+  position: absolute;
+  height: 9px;
+  width: 9px;
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 10px;
+  background-color: #aaa;
+  z-index: 3;
+}
+
+.footerCenterBox {
+  background: linear-gradient(to top, #999, #333);
+  border-top: 12px solid #aaa;
+}
+
+.footerRightBox {
+  position: relative;
+  background: #8D0B15;
+  background: linear-gradient(to left, #999, #333);
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+}
+.footerRightBox:after {
+  content: "";
+  position: absolute;
+  height: 9px;
+  width: 9px;
+  top: 0;
+  left: 0;
+  border-bottom-right-radius: 10px;
+  background-color: #aaa;
+  z-index: 3;
+}/*# sourceMappingURL=layout.css.map */

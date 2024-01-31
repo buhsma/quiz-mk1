@@ -1,56 +1,56 @@
 <?php
-ob_start();
+// Check if session is not already started
+if (session_status() == PHP_SESSION_NONE) {
+    // Start the session
+    session_start();
+}
+
+include 'utils/db.php';
+include 'utils/tools.php';
+include 'utils/post-all.php';
 include 'utils/header.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if($_POST["hiddenField"] == 'quizSetup') {
-        $questionsIndex = quizSetup($_POST["topic"],$_POST["questionCount"], $dbConn);
-        $_SESSION['questionIndex'] = $questionsIndex;
-        $_SESSION['questionCounter'] = 0;
-        $questionCounter = 0;
-        $questionId = $questionsIndex[0];
-        $_SESSION['answers'] = [];
-    }
-    else {
-        // prettyPrint($_POST);
-        array_push($_SESSION['answers'], $_POST['hiddenField']);
-        $_SESSION['questionCounter'] += 1;
-        $questionCounter = $_SESSION['questionCounter'];
-        $questionsIndex = $_SESSION['questionIndex'];
-        if (count($questionsIndex) == $questionCounter) {
-            ob_clean();
-            header('Location: report.php');
-            exit();
-        }
-        $questionId = $questionsIndex[$questionCounter];
-    }
-
-    $questionData = getQuestion($questionId, $dbConn);
-    $question = $questionData['question'];
-    $answers = $questionData['answers'];
-    shuffle($answers);
-    $inputType = $questionData['inputType'];
-    // prettyPrint($questionData);
-    // prettyPrint($inputType);
-    // prettyPrint($_SESSION['answers']);
-}
 ?>
 
+<!--
+<===============================================================================================================================>
+<\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\HTML/////////////////////////////////////////////////////////////////>
+<===============================================================================================================================>
+-->
+
+<!-- backbtn -->
+<form class="backForm" action="question.php" method="POST">
+    <input type="hidden" id="selectedAnswers" name="hiddenField" value="back">
+    <input class="backBTN" type="submit" value="&larr;back">
+</form>
+
+<!-- questions and answers -->
 <main>
 
-    <h1>QUESTION <? echo($questionCounter); ?></h1>
+    <h1>QUESTION <? echo($questionCounter +1); ?></h1>
     <p><? echo($question); ?></p>
     <form class="form" action="question.php" method="POST">
         <label class="form__label" for=""></label>
         <?php foreach($answers as $answer): ?>
-            <button type="button" class="<? echo($inputType . ' form__btn--answer'); ?>" name="answer" value="<?php echo $answer; ?>"><? echo($answer); ?></button>
+            <button type="button" class="<? echo($inputType . ' form__btn form__btn--answer'); ?>" name="answer" value="<?php echo $answer; ?>"><? echo($answer); ?></button>
         <?php endforeach; ?>
         <input type="hidden" id="selectedAnswers" name="hiddenField" value="">
+        <p class="form__instructions"><? echo($instructions); ?></p>
         <button class="form__btn" type="submit">SELECT</button>
     </form>
     
 </main>
 
+<!--
+<===============================================================================================================================>
+<\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\HTML/////////////////////////////////////////////////////////////////>
+<===============================================================================================================================>
+-->
+
+<!--
+This script includes JavaScript code that enhances the interactivity of radio and checkbox buttons.
+It ensures that only one radio button can be selected at a time and handles multiple selections for checkboxes.
+Additionally, it assigns the selected answer(s) to the 'value' attribute. -->
 <?php
 echo('<script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -88,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>');
 ?>
-
 
 <?php
 include 'utils/footer.php';

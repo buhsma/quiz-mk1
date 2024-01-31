@@ -1,0 +1,104 @@
+$col1: #999;
+$col2: #333;
+$border-col: #aaa;
+$col4: #eee;
+
+$borderWidth: 12px;
+
+@mixin grid($height) {
+    display: grid;
+    grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
+    height: $height;
+}
+
+@mixin grid-outer-border($direction) {
+    background: linear-gradient(to $direction, $col1, $col2);
+    border-#{$direction}: $borderWidth solid $border-col;
+}
+
+@mixin grid-outer-corner-border($pos1, $pos2, $pos3, $pos4) {
+    position: absolute;
+    height: 9px;
+    width: 9px;
+    #{$pos1}: 0;
+    #{$pos2}: 0;
+    border-#{$pos3}-#{$pos4}-radius: 10px;
+    background-color: $border-col;
+    z-index: 3;
+}
+
+@mixin grid-outer-corner($direction, $direction2) {
+    position: relative;
+    background: #8D0B15;
+    // background-image: radial-gradient(circle at $direction, linear-gradient($col1 $col2), linear-gradient($col1 $col2));
+    background: linear-gradient(to $direction, $col1, $col2);
+    border-#{$direction}: 2px solid black;
+    border-#{$direction2}: 2px solid black;
+}
+
+
+
+header {
+    @include grid(100%);
+}
+
+
+.headerLeftBox {
+    @include grid-outer-corner(right, bottom);
+    
+    &:after {
+        content: "";
+        @include grid-outer-corner-border(bottom, right, top, left);
+    }
+}
+
+.headerCenterBox {
+    @include grid-outer-border(bottom);
+}
+
+.headerRightBox {
+    @include grid-outer-corner(left, bottom);
+
+    &:after {
+        content: "";
+        @include grid-outer-corner-border(bottom, left, top, right);
+    }
+}
+
+.layoutContainer {
+    @include grid(100%);
+}
+
+.leftBox {
+    @include grid-outer-border(right);
+}
+
+.rightBox {
+    @include grid-outer-border(left);
+}
+
+footer {
+    @include grid(100%);
+}
+
+.footerLeftBox {
+    @include grid-outer-corner(right, top);
+
+    &:after {
+        content: "";
+        @include grid-outer-corner-border(top, right, bottom, left);
+    }
+}
+
+.footerCenterBox {
+    @include grid-outer-border(top);
+}
+
+.footerRightBox {
+    @include grid-outer-corner(left, top);
+
+    &:after {
+        content: "";
+        @include grid-outer-corner-border(top, left, bottom, right);
+    }
+}

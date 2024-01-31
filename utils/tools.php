@@ -6,45 +6,38 @@
         echo '</pre>';
     }
 
+// get topics from ENUM column in db
     function getTopics($dbConn) {
         $query = $dbConn->prepare("SHOW COLUMNS FROM questions LIKE 'topic'");
         $query->execute();
         $topicData = $query->fetch(PDO::FETCH_ASSOC);
-
+        //regex zeugs. danke GPT
         // Extract enum values using regular expression
         preg_match_all("/'([^']+)'/", $topicData['Type'], $matches);
-    
         // Extracted enum values
         $topics = $matches[1];
-
         return $topics;
     }
 
-//make topic var
+//generates an array of random question IDs with a length chosen by the user
     function quizSetup($topic, $count, $dbConn) {
-        $query = $dbConn->prepare("SELECT COUNT(*) FROM questions WHERE topic = 2");
+        $query = $dbConn->prepare("SELECT id FROM questions WHERE topic = '$topic'");
         $query->execute();
-        $totalquestions = $query->fetchColumn();
-        // prettyPrint($totalquestions);
-        $allQuestions = range(0, $totalquestions);
-        shuffle($allQuestions);
-        $questionsIndex = array_slice($allQuestions, 0, $count);
-        // prettyPrint($questionsIndex);
+        $allQuestionsIds = $query->fetchAll(PDO::FETCH_COLUMN);
+        shuffle($allQuestionsIds);
+        $questionsIndex = array_slice($allQuestionsIds, 0, $count);
         return $questionsIndex;
     }
-
+// return current question and answers
     function getQuestion($id, $dbConn) {
         $query = $dbConn->prepare("SELECT * FROM questions WHERE id = $id");
         $query->execute();
         $questionData = $query->fetch(PDO::FETCH_ASSOC);
-        // prettyPrint($questionData);
         $question = $questionData['question_text'];
-        // prettyPrint($question);
-
         $answers = [];
         foreach (range(1, 5) as $index) {
             $answerKey = "answer_$index";
-            if (isset($questionData[$answerKey])) {
+            if (isset($questionData[$answerKey]) && $questionData[$answerKey] !== "") {
                 $answers[] = $questionData[$answerKey];
             }
         }
@@ -52,14 +45,14 @@
         if (strlen($questionData['correct']) > 3) {
             $inputType = 'checkbox';
         } 
-        // prettyPrint($inputType);
+        
         return [
             'question' => $question,
             'answers' => $answers,
             'inputType' => $inputType,
         ];
     }
-
+// get answer by ID and return the correct answers
     function getAnswers($id, $dbConn) {
         $query = $dbConn->prepare("SELECT * FROM questions WHERE id = $id");
         $query->execute();
@@ -72,12 +65,12 @@
         }
         return $correctAnswers;
     }
-
+//regex zeugs. danke GPT
     function extractIntegers($string) {
         preg_match_all('/\d+/', $string, $matches);
         return $matches[0];
     }
-
+// get message coresponding to % of correct answers
     function getMessage($points, $totalPoints) {
         $messages = [
             "Very disappointing. You might need more practice.",
@@ -96,4 +89,12 @@
         $messageIndex = intval($messageIndexPrecentage);
         return $messages[$messageIndex];
     }
+
+    function instructions($inputType) {
+        $instructions = "Choose all the correct options from the list provided.";
+        if ($inputType === 'radio') {
+        $instructions = "Select the correct option from the choices provided.";
+    }
+    return $instructions;
+}
 ?>
