@@ -42,7 +42,7 @@
             }
         }
         $inputType = 'radio';
-        if (strlen($questionData['correct']) > 3) {
+        if (strlen($questionData['correct']) > 1) {
             $inputType = 'checkbox';
         } 
         

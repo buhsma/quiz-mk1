@@ -20,8 +20,8 @@ include 'utils/header.php';
 
 <!-- backbtn -->
 <form class="backForm" action="question.php" method="POST">
-    <input type="hidden" id="selectedAnswers" name="hiddenField" value="back">
-    <input class="backBTN" type="submit" value="&larr;back">
+    <input type="hidden" name="hiddenField" value="back">
+    <button class="backBTN" type="submit">&larr;</button>
 </form>
 
 <!-- questions and answers -->
@@ -29,17 +29,18 @@ include 'utils/header.php';
 
     <h1>QUESTION <? echo($questionCounter +1); ?></h1>
     <p><? echo($question); ?></p>
-    <form class="form" action="question.php" method="POST">
-        <label class="form__label" for=""></label>
+    <form class="form" id="form" action="question.php" method="POST">
+        <input type="hidden" id="selectedAnswers" name="hiddenField" value="as">
         <?php foreach($answers as $answer): ?>
             <button type="button" class="<? echo($inputType . ' form__btn form__btn--answer'); ?>" name="answer" value="<?php echo $answer; ?>"><? echo($answer); ?></button>
         <?php endforeach; ?>
-        <input type="hidden" id="selectedAnswers" name="hiddenField" value="">
         <p class="form__instructions"><? echo($instructions); ?></p>
-        <button class="form__btn" type="submit">SELECT</button>
+        <button class="form__btn" id="submitBtn" type="submit">SELECT</button>
     </form>
     
 </main>
+
+
 
 <!--
 <===============================================================================================================================>
@@ -64,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     btn.classList.remove(\'selected\');
                 });
                 this.classList.add(\'selected\');
+                console.log(selectedAnswersInput.value);
+
                 
                 // Update the hidden input field with the value attribute of the selected button
                 selectedAnswersInput.value = this.value;
@@ -74,6 +77,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     this.classList.remove(\'selected\');
                 } else {
                     this.classList.add(\'selected\');
+                    console.log(selectedAnswersInput.value);
+
                 }
                 let selectedAnswers = [];
                 buttons.forEach(function(btn) {
@@ -86,6 +91,16 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+// document.getElementById(\'submitBtn\').addEventListener(\'click\', function(event) {
+
+//     if (selectedAnswersInput.value === \'\') {
+//         event.preventDefault();
+//         alert(\'Please select an answer before submitting.\');
+//     } else {
+//         document.getElementById(\'form\').submit();
+//     }
+// });
 </script>');
 ?>
 

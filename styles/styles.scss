@@ -13,7 +13,7 @@ input[type=number] {
 }
 
 html{
-    font-family: 'Red Hat Mono', monospace;
+    font-family: 'Newsreader', serif;
     font-size: 1.5em;
 }
 
@@ -36,17 +36,34 @@ p {
     font-size: 1.2em;
 }
 
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+        filter: blur(5px);
+    }
+  
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
 .centerBox {
+    animation: fadein 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     display: relative;
     background-color: #aaa;
     padding: 30px 15px;
     justify-content: space-around;
-    display: flex;
+    // display: flex;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.45) inset;
 }
 
+
 main {
-    background-color: #ccc;
+   
+    background-color: #eee;
     border-radius: 15px;
     padding: 15px;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.45) inset;
@@ -83,6 +100,12 @@ main {
     border-radius: 20px;
     border: 3px solid #fff;
 }
+
+
+// <=============================================================================================================================>
+// <\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\HERE////////////////////////////////////////////////////////////////>
+// <=============================================================================================================================>
+
 
 .form {
     display: flex;
@@ -123,10 +146,10 @@ main {
         
         border-radius: 7px;
         border: 1px solid rgb(128, 128, 128);
-        font-size: 14px;
+        font-size: 16px;
         text-transform: uppercase;
-        font-weight: 600;
-        letter-spacing: 2px;
+        font-weight: 200;
+        letter-spacing: 1px;
         background: transparent;
         color: #000000;
         overflow: hidden;
@@ -135,6 +158,8 @@ main {
         -moz-transition: all 0.2s ease-in;
         transition: all 0.2s ease-in;
         margin-top: 15px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.45) inset;
+        background-image: linear-gradient(90deg, #aaa, #eee, #aaa);
 
         &:hover {
             background: rgb(61, 106, 255);
@@ -178,7 +203,7 @@ main {
         &--answer {
             margin: 10px 20px;
             padding: 10px 20px;
-            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.45) inset;
+            
 
             &:hover {
                 background: rgb(20, 197, 35);
@@ -196,7 +221,7 @@ main {
     position: relative;
     top: 0;
     left: 0;
-    transform: translateY(-16px);
+    transform: translateY(-26px);
 }
 
 .backBTN {
@@ -209,10 +234,22 @@ main {
     font: inherit; 
     font-size: .8em ;
     cursor: pointer; 
-    color: rgba(0, 0, 255, 0.548); 
+    color: rgba(0, 0, 0, 0.548); 
     // text-decoration: underline;
     z-index: 3;
-    transform: translateY(-10px);
+    // transform: translateY(-10px);
+
+    &:hover {
+        
+
+        & span {
+            display: none;
+        }
+
+        &::after {
+            content:"back";
+        }   
+     }
 }
 
 @keyframes sh02 {
@@ -230,6 +267,8 @@ main {
       left: 100%;
     }
   }
+
+  
 
 
 

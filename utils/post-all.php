@@ -4,6 +4,7 @@
 
 // post from index
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // prettyPrint($_POST);
     if($_POST["hiddenField"] == 'quizSetup') {
         $questionIds = quizSetup($_POST["topic"],$_POST["questionCount"], $dbConn);
         $_SESSION['questionIds'] = $questionIds;
@@ -32,13 +33,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $questionCounter = $_SESSION['questionCounter'];
             }
         }
-        else if (count($questionIds) == $questionCounter) {
-            header('Location: report.php');
-            exit();
+        //not $_POST["hiddenField"] == quizSetup or back
+        else {
+            array_push($_SESSION['answers'], $_POST['hiddenField']);
+            // prettyPrint($_SESSION['answers']);
+            // prettyPrint($_POST);
+            if (count($questionIds) == $questionCounter) {
+                header('Location: report.php');
+                exit();
         }
-        $questionId = $questionIds[$questionCounter];
+        }
     }
 //question post
+    
+    $questionId = $questionIds[$questionCounter];
     $questionData = getQuestion($questionId, $dbConn);
     $question = $questionData['question'];
     $answers = $questionData['answers'];
@@ -46,5 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $inputType = $questionData['inputType'];
 
     $instructions = instructions($inputType);
+    
+    
 }
 ?>

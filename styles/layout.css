@@ -19,13 +19,13 @@ header {
   bottom: 0;
   right: 0;
   border-top-left-radius: 10px;
-  background-color: #aaa;
+  background-color: #ddd;
   z-index: 3;
 }
 
 .headerCenterBox {
   background: linear-gradient(to bottom, #999, #333);
-  border-bottom: 12px solid #aaa;
+  border-bottom: 12px solid #ddd;
 }
 
 .headerRightBox {
@@ -43,7 +43,7 @@ header {
   bottom: 0;
   left: 0;
   border-top-right-radius: 10px;
-  background-color: #aaa;
+  background-color: #ddd;
   z-index: 3;
 }
 
@@ -55,12 +55,12 @@ header {
 
 .leftBox {
   background: linear-gradient(to right, #999, #333);
-  border-right: 12px solid #aaa;
+  border-right: 12px solid #ddd;
 }
 
 .rightBox {
   background: linear-gradient(to left, #999, #333);
-  border-left: 12px solid #aaa;
+  border-left: 12px solid #ddd;
 }
 
 footer {
@@ -84,13 +84,13 @@ footer {
   top: 0;
   right: 0;
   border-bottom-left-radius: 10px;
-  background-color: #aaa;
+  background-color: #ddd;
   z-index: 3;
 }
 
 .footerCenterBox {
   background: linear-gradient(to top, #999, #333);
-  border-top: 12px solid #aaa;
+  border-top: 12px solid #ddd;
 }
 
 .footerRightBox {
@@ -108,6 +108,6 @@ footer {
   top: 0;
   left: 0;
   border-bottom-right-radius: 10px;
-  background-color: #aaa;
+  background-color: #ddd;
   z-index: 3;
 }/*# sourceMappingURL=layout.css.map */

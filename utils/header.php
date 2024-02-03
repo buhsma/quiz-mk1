@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles/styles.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz@6..72&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@500&family=Rampart+One&display=swap');
     </style>
 </head>
