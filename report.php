@@ -14,7 +14,7 @@ include 'utils/db.php';
 include 'utils/tools.php';
 include 'utils/post-all.php';
 include 'utils/header.php';
-prettyPrint($answers);
+
 //check if answers are correct
 for ($i = 0; $i < count($questionIds); $i++) {
     $correctAnswers = getAnswers($questionIds[$i], $dbConn);
@@ -43,6 +43,7 @@ $message = getMessage($points, $totalPoints);
 <form class="form" action="index.php">
     <button class="form__btn">RESTART</button>
 </form>
+
 </main>
 
 <!--

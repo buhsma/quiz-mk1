@@ -65,10 +65,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     btn.classList.remove(\'selected\');
                 });
                 this.classList.add(\'selected\');
-                console.log(selectedAnswersInput.value);
-
-                
-                // Update the hidden input field with the value attribute of the selected button
                 selectedAnswersInput.value = this.value;
             });
         } else if (button.classList.contains(\'checkbox\')) {
@@ -77,8 +73,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     this.classList.remove(\'selected\');
                 } else {
                     this.classList.add(\'selected\');
-                    console.log(selectedAnswersInput.value);
-
                 }
                 let selectedAnswers = [];
                 buttons.forEach(function(btn) {
@@ -91,16 +85,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-
-// document.getElementById(\'submitBtn\').addEventListener(\'click\', function(event) {
-
-//     if (selectedAnswersInput.value === \'\') {
-//         event.preventDefault();
-//         alert(\'Please select an answer before submitting.\');
-//     } else {
-//         document.getElementById(\'form\').submit();
-//     }
-// });
 </script>');
 ?>
 

@@ -1,10 +1,8 @@
 <?php
 // ALL posts are handeled here including the last question and the back button
 
-
 // post from index
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // prettyPrint($_POST);
     if($_POST["hiddenField"] == 'quizSetup') {
         $questionIds = quizSetup($_POST["topic"],$_POST["questionCount"], $dbConn);
         $_SESSION['questionIds'] = $questionIds;

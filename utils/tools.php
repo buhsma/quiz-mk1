@@ -58,7 +58,6 @@
         $query->execute();
         $questionData = $query->fetch(PDO::FETCH_ASSOC);
         $correctAnswerIndex = extractIntegers($questionData['correct']);
-        // prettyPrint($correctAnswerIndex);
         foreach($correctAnswerIndex as $i) {
             $correctAnswer = $questionData['answer_'.$i];
             $correctAnswers[] = $correctAnswer;
@@ -73,7 +72,7 @@
 // get message coresponding to % of correct answers
     function getMessage($points, $totalPoints) {
         $messages = [
-            "Very disappointing. You might need more practice.",
+            "My disappointment is immeasurable and my day is ruined. ",
             "Bad performance. Let's work on it.",
             "Oh no, that didn't go well. Keep practicing.",
             "Hmm, you might want to try again.",
@@ -83,7 +82,7 @@
             "Amazing job! You did exceptionally well.",
             "Incredible! You're on fire!",
             "God-like performance! You are absolutely phenomenal!",
-            "Extraordinary! You're out of this world!",
+            "It’s over 9000!",
         ];
         $messageIndexPrecentage = ($points / $totalPoints) *10;
         $messageIndex = intval($messageIndexPrecentage);
