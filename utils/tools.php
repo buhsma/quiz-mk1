@@ -29,29 +29,29 @@
         return $questionsIndex;
     }
 // return current question and answers
-    function getQuestion($id, $dbConn) {
-        $query = $dbConn->prepare("SELECT * FROM questions WHERE id = $id");
-        $query->execute();
-        $questionData = $query->fetch(PDO::FETCH_ASSOC);
-        $question = $questionData['question_text'];
-        $answers = [];
-        foreach (range(1, 5) as $index) {
-            $answerKey = "answer_$index";
-            if (isset($questionData[$answerKey]) && $questionData[$answerKey] !== "") {
-                $answers[] = $questionData[$answerKey];
-            }
-        }
-        $inputType = 'radio';
-        if (strlen($questionData['correct']) > 1) {
-            $inputType = 'checkbox';
-        } 
+    // function getQuestion($id, $dbConn) {
+    //     $query = $dbConn->prepare("SELECT * FROM questions WHERE id = $id");
+    //     $query->execute();
+    //     $questionData = $query->fetch(PDO::FETCH_ASSOC);
+    //     $question = $questionData['question_text'];
+    //     $answers = [];
+    //     foreach (range(1, 5) as $index) {
+    //         $answerKey = "answer_$index";
+    //         if (isset($questionData[$answerKey]) && $questionData[$answerKey] !== "") {
+    //             $answers[] = $questionData[$answerKey];
+    //         }
+    //     }
+    //     $inputType = 'radio';
+    //     if (strlen($questionData['correct']) > 1) {
+    //         $inputType = 'checkbox';
+    //     } 
         
-        return [
-            'question' => $question,
-            'answers' => $answers,
-            'inputType' => $inputType,
-        ];
-    }
+    //     return [
+    //         'question' => $question,
+    //         'answers' => $answers,
+    //         'inputType' => $inputType,
+    //     ];
+    // }
 // get answer by ID and return the correct answers
     function getAnswers($id, $dbConn) {
         $query = $dbConn->prepare("SELECT * FROM questions WHERE id = $id");
