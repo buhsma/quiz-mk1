@@ -93,7 +93,7 @@ function getTopics($dbConn) {
     function instructions($inputType) {
         $instructions = "Choose <strong>ALL</strong> the correct options from the list provided.";
         if ($inputType === 'radio') {
-        $instructions = "Select <strong>THE</strong> correct option from the choices provided.";
+        $instructions = "Select the correct option from the choices provided.";
     }
     return $instructions;
 }

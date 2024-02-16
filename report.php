@@ -21,7 +21,6 @@ for ($i = 0; $i < count($questionIds); $i++) {
     $answers = explode(',', $_SESSION['answers'][$i]);
     $correctAnswers = getAnswers($questionIds[$i], $dbConn);
     foreach($answers as $answer) {
-        prettyPrint($answer);
         if (in_array($answer, $correctAnswers)) {
             $points++;
         }

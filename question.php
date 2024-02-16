@@ -8,9 +8,8 @@ if (session_status() == PHP_SESSION_NONE) {
 include 'utils/db.php';
 include 'utils/tools.php';
 include 'utils/post-all.php';
+$title = 'Question ' .$_SESSION['questionCounter']+1;
 include 'utils/header.php';
-$title = 'Question ' .$questionCounter+1;
-prettyPrint($_SESSION['answers']);
 ?>
 
 <!--

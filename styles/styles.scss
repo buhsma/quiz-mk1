@@ -36,6 +36,11 @@ p {
     font-size: 1.2em;
 }
 
+strong {
+    color: green;
+    font-size: 2em;
+}
+
 @keyframes fadein {
     from {
         opacity: 0;
