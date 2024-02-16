@@ -1,9 +1,10 @@
 <?php
 
+$title = 'Report';
 if (session_status() == PHP_SESSION_NONE) {
     // Start the session
     session_start();}
-
+    
 // initiate variables
 $answers = $_SESSION['answers'];
 $questionIds = $_SESSION['questionIds'];
@@ -17,8 +18,10 @@ include 'utils/header.php';
 
 //check if answers are correct
 for ($i = 0; $i < count($questionIds); $i++) {
+    $answers = explode(',', $_SESSION['answers'][$i]);
     $correctAnswers = getAnswers($questionIds[$i], $dbConn);
     foreach($answers as $answer) {
+        prettyPrint($answer);
         if (in_array($answer, $correctAnswers)) {
             $points++;
         }

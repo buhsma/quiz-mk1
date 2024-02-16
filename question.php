@@ -9,7 +9,8 @@ include 'utils/db.php';
 include 'utils/tools.php';
 include 'utils/post-all.php';
 include 'utils/header.php';
-
+$title = 'Question ' .$questionCounter+1;
+prettyPrint($_SESSION['answers']);
 ?>
 
 <!--
@@ -52,41 +53,40 @@ include 'utils/header.php';
 This script includes JavaScript code that enhances the interactivity of radio and checkbox buttons.
 It ensures that only one radio button can be selected at a time and handles multiple selections for checkboxes.
 Additionally, it assigns the selected answer(s) to the 'value' attribute. -->
-<?php
-echo('<script>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
-    let buttons = document.querySelectorAll(\'.form__btn--answer\');
-    let selectedAnswersInput = document.getElementById(\'selectedAnswers\');
+    let buttons = document.querySelectorAll('.form__btn--answer');
+    let selectedAnswersInput = document.getElementById('selectedAnswers');
     
     buttons.forEach(function(button) {
-        if (button.classList.contains(\'radio\')) {
-            button.addEventListener(\'click\', function() {
+        if (button.classList.contains('radio')) {
+            button.addEventListener('click', function() {
                 buttons.forEach(function(btn) {
-                    btn.classList.remove(\'selected\');
+                    btn.classList.remove('selected');
                 });
-                this.classList.add(\'selected\');
+                this.classList.add('selected');
                 selectedAnswersInput.value = this.value;
             });
-        } else if (button.classList.contains(\'checkbox\')) {
-            button.addEventListener(\'click\', function() {
-                if (this.classList.contains(\'selected\')) {
-                    this.classList.remove(\'selected\');
+        } else if (button.classList.contains('checkbox')) {
+            button.addEventListener('click', function() {
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
                 } else {
-                    this.classList.add(\'selected\');
+                    this.classList.add('selected');
                 }
                 let selectedAnswers = [];
                 buttons.forEach(function(btn) {
-                    if (btn.classList.contains(\'selected\')) {
+                    if (btn.classList.contains('selected')) {
                         selectedAnswers.push(btn.value);
                     }
                 });
-                selectedAnswersInput.value = selectedAnswers.join(\',\');
+                selectedAnswersInput.value = selectedAnswers.join(',');
             });
         }
     });
 });
-</script>');
-?>
+</script>
+
 
 <?php
 include 'utils/footer.php';

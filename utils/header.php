@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo($title); ?></title>
     <link rel="stylesheet" href="styles/styles.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz@6..72&display=swap');
